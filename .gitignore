@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Variables d'environnement
+.env
+.env.example
+.env.*
+!.env.example
+
+# Dépendances
+node_modules/
