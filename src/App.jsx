@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
@@ -12,27 +12,19 @@ import Footer from "./components/Footer";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 6500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <>
-      <Navbar />
-      <Accueil />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+
+      <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
+        <Navbar />
+        <Accueil />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+        <Footer />
+      </div>
     </>
   );
 }
